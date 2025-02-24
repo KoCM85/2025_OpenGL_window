@@ -1,0 +1,16 @@
+# Ignore all
+/*
+
+# Do not ignore that
+!.gitignore
+!README.md
+!OpenGL.sln
+!/OpenGL
+
+# Ignore everything in the folder
+/OpenGL/*
+
+# Do not ignore that
+!/OpenGL/main.cpp
+!/OpenGL/OpenGL.vcxproj
+!/OpenGL/OpenGL.vcxproj.filters
