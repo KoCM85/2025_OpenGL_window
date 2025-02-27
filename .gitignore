@@ -5,10 +5,4 @@
 !.gitignore
 !README.md
 !CMakeLists.txt
-!/OpenGL
-
-# Ignore everything in the folder
-/OpenGL/*
-
-# Do not ignore that
-!/OpenGL/main.cpp
+!/sources

@@ -1,0 +1,51 @@
+cmake_minimum_required(VERSION 3.28)
+
+project(OpenGL_window LANGUAGES CXX VERSION 1.0.0)
+cmake_policy(SET CMP0072 NEW)
+
+set(OpenGL_window_VERSION_MAJOR 1)
+set(OpenGL_window_VERSOPN_MINOR 0)
+set(OpenGL_window_VERSION_PATCH 0)
+
+find_package(OpenGL REQUIRED)
+
+if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "win32")
+	set(PROJ_PLATFORM x86)
+elseif("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "x64")
+	set(PROJ_PLATFORM x64)
+elseif("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "")
+	if(NOT ${CMAKE_VS_PLATFORM_NAME} STREQUAL "")
+		set(PROJ_PLATFORM ${CMAKE_VS_PLATFORM_NAME})
+	else()
+		set(PROJ_PLATFORM unknown)
+	endif()	
+endif()
+
+set(GRAPHIC D:/Sources/Graphic/OpenGL)
+set(PROJ_SOURCES "${CMAKE_SOURCE_DIR}/sources/main.cpp" "${GRAPHIC}/GLAD/src/glad.c")
+set(PROJ_INCLUDE_DIR "${GRAPHIC}/GLAD/include" "${GRAPHIC}/GLFW/include")
+set(PROJ_BINARY_DIR ${CMAKE_SOURCE_DIR}/binary/${PROJ_PLATFORM}/$<CONFIG>)
+set(PROJ_LINK_DIR ${GRAPHIC}/GLFW/lib/${PROJ_PLATFORM}/$<CONFIG>)
+set(PROJ_LINK_LIB glfw3 OpenGL::GL)
+
+get_property(PROJ_IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+
+if(PROJ_IS_MULTI_CONFIG)
+	set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
+else()
+	set(CMAKE_BUILD_TYPE Release)
+endif()
+
+add_executable(${CMAKE_PROJECT_NAME} ${PROJ_SOURCES})
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${PROJ_INCLUDE_DIR})
+target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE ${PROJ_LINK_DIR})
+target_link_libraries(${CMAKE_PROJECT_NAME} ${PROJ_LINK_LIB})
+
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJ_BINARY_DIR})
+
+message("PROJ_BINARY_DIR = ${PROJ_BINARY_DIR}")
+message("PROJ_LINK_DIR = ${PROJ_LINK_DIR}")
+message("PROJ_SOURCES = ${PROJ_SOURCES}")
+message("PROJ_INCLUDE_DIR = ${PROJ_INCLUDE_DIR}")

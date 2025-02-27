@@ -1,5 +1,5 @@
-#pragma comment(lib, "glfw3.lib")
-#pragma comment(lib, "OpenGL32.lib")
+//#pragma comment(lib, "glfw3.lib")
+//#pragma comment(lib, "OpenGL32.lib")
 
 #include "GLAD/glad.h"
 #include "GLFW/glfw3.h"
