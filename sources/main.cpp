@@ -91,8 +91,9 @@ int main(int arg_counter, char* arg_value[]) {
 	// GL_DEPTH_BUFFER_BIT - depth buffer
 	// GL_STENCIL_BUFFER_BIT - stencil buffer
 
+	glClearColor(background.R, background.G, background.B, background.A);
+
 	while (!glfwWindowShouldClose(window)) {
-		glClearColor(background.R, background.G, background.B, background.A);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glfwSwapBuffers(window);
