@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.28)
 
 set(VERSION_MAJOR 1)
 set(VERSOPN_MINOR 1)
-set(VERSION_PATCH 1)
+set(VERSION_PATCH 2)
 
 project(OpenGL_window LANGUAGES C CXX VERSION ${VERSION_MAJOR}.${VERSOPN_MINOR}.${VERSION_PATCH})
 
@@ -26,10 +26,10 @@ set(PROJ_SOURCES
 	${CMAKE_SOURCE_DIR}/sources/main.cpp
 	${PROJ_TEMP}/version.h
 	${PROJ_TEMP}/version.cpp
-	${PROJ_GRAPHIC}/GLAD/src/glad.c
+	${PROJ_GRAPHIC}/GLAD2/src/glad.c
 )
 set(PROJ_INCLUDE_DIR
-	${PROJ_GRAPHIC}/GLAD/include
+	${PROJ_GRAPHIC}/GLAD2/include
 	${PROJ_GRAPHIC}/GLFW/include
 )
 set(PROJ_BINARY_DIR ${CMAKE_SOURCE_DIR}/binary/${PROJ_PLATFORM}/$<CONFIG>)

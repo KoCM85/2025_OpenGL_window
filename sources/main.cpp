@@ -70,8 +70,14 @@ int main(int arg_counter, char* arg_value[]) {
 
 	glfwMakeContextCurrent(window);
 
+	/* GLAD
 	GLADloadproc load_proc = reinterpret_cast<GLADloadproc>(glfwGetProcAddress);
 	int is_glad_init = gladLoadGLLoader(load_proc);
+	*/
+
+	// GLAD2
+	GLADloadfunc load_proc = reinterpret_cast<GLADloadfunc>(glfwGetProcAddress);
+	int is_glad_init = gladLoadGL(load_proc);
 
 	if (!is_glad_init) {
 		log_writer(log, log_file_name, "Failed to initialize GLAD \n");
