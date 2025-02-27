@@ -1,13 +1,12 @@
-//#pragma comment(lib, "glfw3.lib")
-//#pragma comment(lib, "OpenGL32.lib")
+#include <iostream>
+#include <string>
+#include <functional>
+#include <fstream>
 
 #include "GLAD/glad.h"
 #include "GLFW/glfw3.h"
 
-#include <iostream>
-#include <string_view>
-#include <functional>
-#include <fstream>
+#include "version.h"
 
 namespace {
 	struct rgba {
@@ -32,7 +31,7 @@ int main(int arg_counter, char* arg_value[]) {
 	const int opengl_version_major = 4;
 	const int opengl_version_minor = 6;
 	rgba background = { 0.2f, 0.3f, 0.1f, 1.0f };
-	std::string_view window_title = "g00dboyo";
+	std::string window_title = "g00dboyo";
 	std::function<void(GLFWwindow*)> process_events = [](GLFWwindow* window_pe) {
 		int key_state = glfwGetKey(window_pe, GLFW_KEY_ESCAPE);
 
@@ -54,6 +53,10 @@ int main(int arg_counter, char* arg_value[]) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, opengl_version_major);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, opengl_version_minor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+#ifdef PROJ_VERSION_DISPL
+	window_title = window_title + "  ver: " + std::to_string(VERSION_MAJOR) + '.' + std::to_string(VERSOPN_MINOR) + '.' + std::to_string(VERSION_PATCH);
+#endif
 
 	GLFWwindow* window = glfwCreateWindow(width, height, window_title.data(), nullptr, nullptr);
 

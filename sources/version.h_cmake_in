@@ -1,0 +1,11 @@
+#ifndef VERSION_H
+
+#define VERSION_H
+
+#cmakedefine PROJ_VERSION_DISPL
+
+extern size_t VERSION_MAJOR;
+extern size_t VERSOPN_MINOR;
+extern size_t VERSION_PATCH;
+
+#endif // VERSION_H
