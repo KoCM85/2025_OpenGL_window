@@ -16,11 +16,9 @@ namespace {
 		GLfloat A;
 	};
 
-	void log_writer(std::ofstream& log_lw, std::string_view& log_file_name_lw, std::string_view message) {
-		log_lw.open(log_file_name_lw.data(), std::ios::out | std::ios::binary | std::ios::app);
-		log_lw << message;
-		log_lw.close();
-	}
+	void log_writer(std::ofstream& log_lw, std::string_view& log_file_name_lw, std::string_view message_lw);
+
+	void append_title(std::string& window_title_at);
 }
 
 int main(int arg_counter, char* arg_value[]) {
@@ -31,7 +29,7 @@ int main(int arg_counter, char* arg_value[]) {
 	const int opengl_version_major = 4;
 	const int opengl_version_minor = 6;
 	rgba background = { 0.2f, 0.3f, 0.1f, 1.0f };
-	std::string window_title = "g00dboyo";
+	std::string window_title = "g00dboyo on ";
 	std::function<void(GLFWwindow*)> process_events = [](GLFWwindow* window_pe) {
 		int key_state = glfwGetKey(window_pe, GLFW_KEY_ESCAPE);
 
@@ -54,9 +52,7 @@ int main(int arg_counter, char* arg_value[]) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, opengl_version_minor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-#ifdef PROJ_VERSION_DISPL
-	window_title = window_title + "  ver: " + std::to_string(VERSION_MAJOR) + '.' + std::to_string(VERSOPN_MINOR) + '.' + std::to_string(VERSION_PATCH);
-#endif
+	append_title(window_title);
 
 	GLFWwindow* window = glfwCreateWindow(width, height, window_title.data(), nullptr, nullptr);
 
@@ -104,4 +100,31 @@ int main(int arg_counter, char* arg_value[]) {
 	glfwTerminate();
 
 	return 0;
+}
+
+
+
+namespace {
+	void log_writer(std::ofstream& log_lw, std::string_view& log_file_name_lw, std::string_view message_lw) {
+		log_lw.open(log_file_name_lw.data(), std::ios::out | std::ios::binary | std::ios::app);
+		log_lw << message_lw;
+		log_lw.close();
+	}
+
+	void append_title(std::string& window_title_at) {
+#if defined(_WIN32) || defined(_WIN64)
+		window_title_at = window_title_at + "Windows OS";
+#elif defined(__APPLE__) || defined(__MACH__)
+		window_title_at = window_title_at + "Mac OS";
+#elif defined(unix) || defined(__unix) || defined(__unix__)
+		window_title_at = window_title_at + "Unix OS";
+#else
+		window_title_at = window_title_at + "Unknown OS";
+#endif // _WIN32 || _WIN64 OTHERS
+
+
+#ifdef PROJ_VERSION_DISPL
+		window_title_at = window_title_at + "  ver: " + std::to_string(VERSION_MAJOR) + '.' + std::to_string(VERSOPN_MINOR) + '.' + std::to_string(VERSION_PATCH);
+#endif // PROJ_VERSION_DISPL
+	}
 }
