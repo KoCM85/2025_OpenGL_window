@@ -2,25 +2,26 @@ cmake_minimum_required(VERSION 3.28)
 
 set(VERSION_MAJOR 1)
 set(VERSOPN_MINOR 1)
-set(VERSION_PATCH 4)
+set(VERSION_PATCH 5)
 
 project(OpenGL_window LANGUAGES C CXX VERSION ${VERSION_MAJOR}.${VERSOPN_MINOR}.${VERSION_PATCH})
 
 find_package(OpenGL REQUIRED)
 
-if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "win32")
-	set(PROJ_PLATFORM x86)
-elseif("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "x64")
+if(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
 	set(PROJ_PLATFORM x64)
-elseif("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "")
-	if(NOT ${CMAKE_VS_PLATFORM_NAME} STREQUAL "")
-		set(PROJ_PLATFORM ${CMAKE_VS_PLATFORM_NAME})
-	else()
-		set(PROJ_PLATFORM unknown)
-	endif()	
+else()
+	set(PROJ_PLATFORM x86)
 endif()
 
-set(PROJ_GRAPHIC D:/Sources/Graphic/OpenGL)
+if("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
+	set(PROJ_GRAPHIC D:/Sources/Graphic/OpenGL)
+elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+	set(PROJ_GRAPHIC D:/Sources/Graphic/OpenGL)
+elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
+	set(PROJ_GRAPHIC /home/serg/Documents/Sources/Graphic/OpenGL)
+endif()
+
 set(PROJ_TEMP ${CMAKE_SOURCE_DIR}/build)
 set(PROJ_SOURCES
 	${CMAKE_SOURCE_DIR}/sources/main.cpp
@@ -50,8 +51,6 @@ get_property(PROJ_IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 
 if(PROJ_IS_MULTI_CONFIG)
 	set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
-else()
-	set(CMAKE_BUILD_TYPE Release)
 endif()
 
 configure_file(${PROJ_CONFIGURE_FILE_1} ${PROJ_RESULTING_FILE_1})
