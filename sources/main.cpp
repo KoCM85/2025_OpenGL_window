@@ -27,7 +27,7 @@ int main(int arg_counter, char* arg_value[]) {
 	const int width = 2048;
 	const int height = 1080;
 	const int opengl_version_major = 4;
-	const int opengl_version_minor = 6;
+	const int opengl_version_minor = 5;
 	rgba background = { 0.2f, 0.3f, 0.1f, 1.0f };
 	std::string window_title = "g00dboyo on ";
 	std::function<void(GLFWwindow*)> process_events = [](GLFWwindow* window_pe) {
@@ -116,6 +116,8 @@ namespace {
 		window_title_at = window_title_at + "Windows OS";
 #elif defined(__APPLE__) || defined(__MACH__)
 		window_title_at = window_title_at + "Mac OS";
+#elif defined(linux) || defined(__linux) || defined(__linux__)
+		window_title_at = window_title_at + "Linux OS";
 #elif defined(unix) || defined(__unix) || defined(__unix__)
 		window_title_at = window_title_at + "Unix OS";
 #else
