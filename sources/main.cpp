@@ -51,6 +51,12 @@ int main(int arg_counter, char* arg_value[]) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, opengl_version_major);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, opengl_version_minor);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	
+#if defined(__APPLE__) || defined(__MACH__)
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+
+
 
 	append_title(window_title);
 
