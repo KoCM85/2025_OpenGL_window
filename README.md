@@ -17,13 +17,20 @@ For this project used:
 Instead of [GLAD2](https://gen.glad.sh/) you can use [GLAD](https://glad.dav1d.de/).
 
 You need change file names **gl.h** to **glad.h**, **gl.c** to **glad.c**.
-In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h**
+In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h**.
+
+GLFW static libraries are used.
 
 ## GLFW build
 
 1. Windows
 
 	You may need to install some dependencies.
+	
+	Used:
+	- **Windows 11** OS
+	- **Visual Studio 17 2022** generator
+
 	- x86:
 	```
 		cmake -S . -B ./build -A win32
@@ -40,6 +47,11 @@ In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h
 2. Linux
 
 	You may need to install some dependencies like [Wayland](https://www.glfw.org/docs/latest/compile_guide.html#compile_deps) and [X11](https://www.glfw.org/docs/latest/compile_guide.html#compile_deps) and so on.
+	
+	Used:
+	- **Fedora 40 (Forty)** OS
+	- **Unix Makefiles** generator
+	
 	- x86:
 	```
 		cmake -S . -B ./build -D CMAKE_C_FLAGS="-m32" -D CMAKE_BUILD_TYPE="Debug"
@@ -55,11 +67,29 @@ In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h
 		cmake --build ./build
 	```
 	
+3. Mac OS
+	
+	Used:
+	- **Sequoia 15.1** OS
+	- **Xcode 16.1** generator
+
+	- x64:
+	```
+		cmake -S . -B ./build -G Xcode
+		cmake --build ./build --config Release
+		cmake --build ./build --config Debug
+	```
+	
 ## Project build
 
 1. Windows
 
 	You may need to install some dependencies like **OpenGL** and so on.
+	
+	Used:
+	- **Windows 11** OS
+	- **Visual Studio 17 2022** generator
+
 	- x86:
 	```
 		cmake -S . -B ./build -A win32
@@ -77,6 +107,11 @@ In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h
 
 	You may need to install some dependencies like [OpenGL](https://en.wikibooks.org/wiki/OpenGL_Programming/Installation/Linux) and so on.
 	When compiling on x86 you can get some errors like **i386 architecture of input file is incompatible with i386:x86-64 output** and so on.
+	
+	Used:
+	- **Fedora 40 (Forty)** OS
+	- **Unix Makefiles** generator
+	
 	- x86:
 	```
 		cmake -S . -B ./build -D CMAKE_C_FLAGS="-m32" -D CMAKE_BUILD_TYPE="Debug"
@@ -90,4 +125,19 @@ In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h
 		cmake --build ./build
 		cmake -S . -B ./build -D CMAKE_C_FLAGS="-m64" -D CMAKE_BUILD_TYPE="Release"
 		cmake --build ./build
+	```
+	
+3. Mac OS
+	
+	[Info](https://www.glfw.org/docs/latest/build_guide.html#build_link_xcode) for build on Mac OS.
+	
+	Used:
+	- **Sequoia 15.1** OS
+	- **Xcode 16.1** generator
+
+	- x64:
+	```
+		cmake -S . -B ./build -G Xcode
+		cmake --build ./build --config Release
+		cmake --build ./build --config Debug
 	```
