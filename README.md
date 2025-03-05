@@ -48,6 +48,8 @@ GLFW static libraries are used.
 
 	You may need to install some dependencies like [Wayland](https://www.glfw.org/docs/latest/compile_guide.html#compile_deps) and [X11](https://www.glfw.org/docs/latest/compile_guide.html#compile_deps) and so on.
 	
+	**For 32-bit build better to use 32-bit OS, otherwise it may not build correctly.**
+	
 	Used:
 	- **Fedora 40 (Forty)** OS
 	- **Unix Makefiles** generator
@@ -68,6 +70,8 @@ GLFW static libraries are used.
 	```
 	
 3. Mac OS
+
+	**32-bit isn't supported**.
 	
 	Used:
 	- **Sequoia 15.1** OS
@@ -108,6 +112,8 @@ GLFW static libraries are used.
 	You may need to install some dependencies like [OpenGL](https://en.wikibooks.org/wiki/OpenGL_Programming/Installation/Linux) and so on.
 	When compiling on x86 you can get some errors like **i386 architecture of input file is incompatible with i386:x86-64 output** and so on.
 	
+	**For 32-bit build better to use 32-bit OS, otherwise it may not build correctly.**
+	
 	Used:
 	- **Fedora 40 (Forty)** OS
 	- **Unix Makefiles** generator
@@ -130,6 +136,8 @@ GLFW static libraries are used.
 3. Mac OS
 	
 	[Info](https://www.glfw.org/docs/latest/build_guide.html#build_link_xcode) for build on Mac OS.
+	
+	**32-bit isn't supported**.
 	
 	Used:
 	- **Sequoia 15.1** OS
