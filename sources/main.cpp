@@ -2,6 +2,7 @@
 #include <string>
 #include <functional>
 #include <fstream>
+#include <cstdlib>
 
 #include "GLAD/glad.h"
 #include "GLFW/glfw3.h"
@@ -45,7 +46,7 @@ int main(int arg_counter, char* arg_value[]) {
 	if (!is_glfw_init) {
 		log_writer(log, log_file_name, "Failed to initialize GLFW \n");
 
-		return -1;
+		return EXIT_FAILURE;
 	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, opengl_version_major);
@@ -67,7 +68,7 @@ int main(int arg_counter, char* arg_value[]) {
 
 		glfwTerminate();
 
-		return -1;
+		return EXIT_FAILURE;
 	}
 
 	glfwMakeContextCurrent(window);
@@ -86,7 +87,7 @@ int main(int arg_counter, char* arg_value[]) {
 
 		glfwTerminate();
 
-		return -1;
+		return EXIT_FAILURE;
 	}
 
 	// GL_COLOR_BUFFER_BIT - color buffer
@@ -105,7 +106,7 @@ int main(int arg_counter, char* arg_value[]) {
 
 	glfwTerminate();
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 
