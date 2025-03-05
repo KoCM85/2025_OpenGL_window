@@ -44,6 +44,13 @@ set(PROJ_LINK_LIB
 	OpenGL::GL
 )
 
+if("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+	set(PROJ_LINK_LIB ${PROJ_LINK_LIB}
+			"-framework Cocoa"
+			"-framework IOKit"
+			"-framework QuartzCore")
+endif()
+
 option(PROJ_VERSION_PRINT "If selected, project version will be printed, otherwise nope" ON)
 option(PROJ_VERSION_DISPL "IF selected, project version will be displayed in the run window" ON)
 
