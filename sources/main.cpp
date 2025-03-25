@@ -133,7 +133,7 @@ namespace {
 
 
 #ifdef PROJ_VERSION_DISPL
-		window_title_at = window_title_at + "  ver: " + std::to_string(VERSION_MAJOR) + '.' + std::to_string(VERSOPN_MINOR) + '.' + std::to_string(VERSION_PATCH);
+		window_title_at = window_title_at + "  ver: " + std::to_string(VERSION_MAJOR) + '.' + std::to_string(VERSION_MINOR) + '.' + std::to_string(VERSION_PATCH);
 #endif // PROJ_VERSION_DISPL
 	}
 }
