@@ -21,6 +21,9 @@ In the file **glad.c** change **\#include glad/gl.h** to **\#include glad/glad.h
 
 GLFW static libraries are used.
 
+Builded project looks like this:
+![OpenGL window](images/OpenGL_window.png)
+
 ## GLFW build
 
 1. Windows
